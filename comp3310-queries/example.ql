@@ -1,12 +1,17 @@
+
 /**
- * @name Comp3310 workshop 6 query
- * @kind problem
- * @problem.severity warning
- * @id java/example/empty-block
+ * @id java/examples/method-call
+ * @name Call to method
+ * @description Finds 
+ * @tags call
+ *       method
  */
 
-import java
+ import java
 
-from BlockStmt b
-where b.getNumStmt() = 0
-select b, "This is an empty block."
+ from MethodAccess call, Method method
+ where
+   call.getMethod() = method and
+   method.hasName("nextLine") and
+   method.getDeclaringType().hasQualifiedName("java.util", "Scanner")
+ select call, "nextline"
